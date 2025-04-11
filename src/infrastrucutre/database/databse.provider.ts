@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import "dotenv/config";
 import { Character } from "src/modules/character/domain/entities/character.entity";
+import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.entity";
 
 export const databaseProviders = [
     {
@@ -15,7 +16,8 @@ export const databaseProviders = [
                 database: process.env.DATABASE,
                 schema: process.env.DATABASE_SCHEMA,
                 entities: [
-                    Character
+                    Character,
+                    MagicItem
                 ],
                 synchronize: true,
             });

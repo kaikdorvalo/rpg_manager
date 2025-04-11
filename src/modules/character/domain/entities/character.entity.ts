@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import "dotenv/config";
 import { ClassEnum } from "../enums/class.enum";
+import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.entity";
 
 @Entity({ schema: process.env.DATABASE_SCHEMA })
 export class Character {
@@ -19,8 +20,9 @@ export class Character {
     @Column({ nullable: false })
     level: number
 
-    @Column()
-    magicItens: string
+    @ManyToMany(() => MagicItem, magicItem => magicItem.characters)
+    @JoinTable()
+    magicItens: MagicItem[]
 
     @Column({ nullable: false })
     strength: number

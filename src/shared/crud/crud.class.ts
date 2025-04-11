@@ -7,7 +7,12 @@ export class Crud<T> implements Repository<T> {
         private entity: EntityTarget<T>
     ) { }
 
-    async create(data: DeepPartial<T>, manager?: EntityManager): Promise<T> {
+    create(entityLike: DeepPartial<T>, manager?: EntityManager): T {
+        const repository = manager ? manager.getRepository(this.entity) : this.datasource.getRepository(this.entity);
+        return repository.create(entityLike);
+    }
+
+    async save(data: DeepPartial<T>, manager?: EntityManager): Promise<T> {
         const repository = manager ? manager.getRepository(this.entity) : this.datasource.getRepository(this.entity);
         return await repository.save(data);
     }
