@@ -20,7 +20,7 @@ export class Crud<T> implements Repository<T> {
         const repository = manager ? manager.getRepository(this.entity) : this.datasource.getRepository(this.entity);
         return await repository.find();
     }
-    async findById(id: string, manager?: EntityManager): Promise<T> {
+    async findById(id: string, manager?: EntityManager): Promise<T | null> {
         const repository = manager ? manager.getRepository(this.entity) : this.datasource.getRepository(this.entity);
         return await repository.findOneBy({ id: id } as any);
     }

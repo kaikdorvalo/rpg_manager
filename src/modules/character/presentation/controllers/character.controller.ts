@@ -13,6 +13,6 @@ export class CharacterController {
     @Post('create')
     async create(@Res() response: Response, @Body() createCharacterDto: CreateCharacterDto) {
         const result = await this.createCharacterUseCase.execute(createCharacterDto);
-        return response.status(201).send(result)
+        return response.status(result.status).send(result.data);
     }
 }
