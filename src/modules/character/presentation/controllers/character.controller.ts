@@ -9,6 +9,7 @@ import { UpdateAdventurousNameDto } from "../dtos/update-adventurous-name.dto";
 import { RemoveCharacterUseCase } from "../../application/use-cases/remove-character.use-case";
 import { addCharacterMagicItemDto } from "../dtos/add-character-magic-item.dto";
 import { AddMagicItemUseCase } from "../../application/use-cases/add-magic-item.use-case";
+import { GetMagicItemsPerCharacterUseCase } from "../../application/use-cases/get-magic-items-per-character.use-case";
 
 @Controller('characters')
 export class CharacterController {
@@ -20,6 +21,7 @@ export class CharacterController {
         private readonly updateAdventurousNameUseCase: UpdateAdventurousNameUseCase,
         private readonly removeCharacterUseCase: RemoveCharacterUseCase,
         private readonly addMagicItemUseCase: AddMagicItemUseCase,
+        private readonly getMagicItemsPerCharacterUseCase: GetMagicItemsPerCharacterUseCase,
     ) { }
 
     @Post('create')
@@ -55,6 +57,12 @@ export class CharacterController {
     @Post('magic_items/add/:id')
     async addMagicItemToCharacter(@Param('id') id: string, @Body() addCharacterMagicItemDto: addCharacterMagicItemDto, @Res() response: Response) {
         const result = await this.addMagicItemUseCase.execute(id, addCharacterMagicItemDto);
+        return response.status(result.status).send(result.data);
+    }
+
+    @Get('magic_items/all/:id')
+    async getMagicItemsPerCharacter(@Param('id') id: string, @Res() response: Response) {
+        const result = await this.getMagicItemsPerCharacterUseCase.execute(id);
         return response.status(result.status).send(result.data);
     }
 
