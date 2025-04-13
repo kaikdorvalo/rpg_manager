@@ -4,14 +4,10 @@ import { ValidationResult } from "src/shared/classes/ValidationResult";
 import { InvalidField } from "src/shared/classes/invalid-fields.class";
 import { Validator } from "src/shared/utils/validator";
 import { ClassEnum } from "../enums/class.enum";
-import { MagicItemRepository } from "src/modules/magic_item/infrastructure/repositories/magic-item.repository";
-import { MagicItemEnum } from "src/modules/magic_item/domain/enums/magic-item-type.enum";
-import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.entity";
 
 @Injectable()
 export class CharacterService {
     constructor(
-        // private readonly magicItemRepository: MagicItemRepository
     ) { }
 
     public validator = new Validator();
@@ -37,42 +33,9 @@ export class CharacterService {
             invalidFields.push(...validateStrengthAndDefense.invalidFields);
         }
 
-        if (character.magicItens.length > 0) {
-            let validatedMagicItems = await this.validateCharacterMagicItems(character);
-            if (!validatedMagicItems.valid) {
-                invalidFields.push(...validatedMagicItems.invalidFields);
-            }
-        }
-
-
         const validated = invalidFields.length === 0;
 
         return new ValidationResult(validated, invalidFields);
-    }
-
-    // lembrar de colocar validação de itens iguais nessa bomba
-    async validateCharacterMagicItems(character: Character): Promise<ValidationResult> {
-        let invalidFields: InvalidField[] = []
-
-        // let queries = character.magicItens.map((magicItem) => {
-        //     return this.magicItemRepository.findById(magicItem.id);
-        // })
-
-        // const result = await Promise.all(queries);
-        // const validMagicItems = result.filter((magicItem) => magicItem !== null);
-        // if (validMagicItems.length - result.length !== 0) {
-        //     invalidFields.push(new InvalidField('magicItems', 'Invalid magic item(s)'))
-        // }
-
-        // let validateAmulet = validMagicItems.filter((magicItem) => magicItem.itemType === MagicItemEnum.AMULET);
-        // if (validateAmulet.length > 1) {
-        //     invalidFields.push(new InvalidField('magicItems', `One amulet item limit exceded. You provided ${validateAmulet.length}`));
-        // }
-
-        let validated = invalidFields.length === 0;
-
-        return new ValidationResult(validated, invalidFields);
-
     }
 
     validateCharacterClass(character: Character) {

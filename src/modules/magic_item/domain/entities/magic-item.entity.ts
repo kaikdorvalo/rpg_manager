@@ -23,7 +23,8 @@ export class MagicItem {
 
     @ManyToOne(() => Character, character => character.magicItens, {
         onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         cascade: true
     })
-    characters: Character
+    character: Character
 }

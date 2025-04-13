@@ -8,8 +8,8 @@ import { GetCharacterInformationsUseCase } from "./application/use-cases/get-cha
 import { GetCharacterByIdUseCase } from "./application/use-cases/get-character-by-id.use-case";
 import { UpdateAdventurousNameUseCase } from "./application/use-cases/update-adventurous-name.use-case";
 import { RemoveCharacterUseCase } from "./application/use-cases/remove-character.use-case";
-import { AddMagicItemUseCase } from "./application/use-cases/add-magic-item.use-case";
 import { GetMagicItemsPerCharacterUseCase } from "./application/use-cases/get-magic-items-per-character.use-case";
+import { GetChaarcterAmuletUseCase } from "./application/use-cases/get-character-amulet.use-case";
 
 @Module({
     imports: [
@@ -26,8 +26,8 @@ import { GetMagicItemsPerCharacterUseCase } from "./application/use-cases/get-ma
         GetCharacterByIdUseCase,
         UpdateAdventurousNameUseCase,
         RemoveCharacterUseCase,
-        // AddMagicItemUseCase,
         GetMagicItemsPerCharacterUseCase,
+        GetChaarcterAmuletUseCase,
     ],
     exports: [
         CharacterService,
@@ -37,8 +37,8 @@ import { GetMagicItemsPerCharacterUseCase } from "./application/use-cases/get-ma
         GetCharacterByIdUseCase,
         UpdateAdventurousNameUseCase,
         RemoveCharacterUseCase,
-        // AddMagicItemUseCase,
         GetMagicItemsPerCharacterUseCase,
+        GetChaarcterAmuletUseCase,
     ]
 })
 export class CharacterModule { }

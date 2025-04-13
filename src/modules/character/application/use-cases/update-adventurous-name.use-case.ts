@@ -14,6 +14,12 @@ export class UpdateAdventurousNameUseCase {
 
     async execute(id: string, updateDto: UpdateAdventurousNameDto): Promise<ResponseObject> {
         const validator: Validator = new Validator();
+
+        if (!validator.isUUID(id)) {
+            return new ResponseObject(HttpStatus.BAD_REQUEST, { message: "Character id must be an UUID" })
+        }
+
+
         let invalidField: InvalidField;
 
         const exists = await this.characterRepository.findById(id);

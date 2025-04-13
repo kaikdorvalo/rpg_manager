@@ -20,7 +20,7 @@ export class Character {
     @Column({ nullable: false })
     level: number
 
-    @OneToMany(() => MagicItem, magicItem => magicItem.characters)
+    @OneToMany(() => MagicItem, magicItem => magicItem.character)
     magicItens: MagicItem[]
 
     @Column({ nullable: false })

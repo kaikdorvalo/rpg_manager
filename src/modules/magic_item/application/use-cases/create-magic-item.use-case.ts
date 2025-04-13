@@ -5,6 +5,9 @@ import { MagicItemRepository } from "../../infrastructure/repositories/magic-ite
 import { CreateMagicItemDto } from "../../presentation/dtos/create-magic-item.dto";
 import { ResponseObject } from "src/shared/classes/response-object.class";
 import { CharacterRepository } from "src/modules/character/infrastructure/repositories/character.repository";
+import { Validator } from "src/shared/utils/validator";
+import { Character } from "src/modules/character/domain/entities/character.entity";
+import { MagicItemEnum } from "../../domain/enums/magic-item-type.enum";
 
 @Injectable()
 export class CreateMagicItemUseCase {
@@ -15,16 +18,38 @@ export class CreateMagicItemUseCase {
     ) { }
 
     async execute(createMagicItemDto: CreateMagicItemDto): Promise<ResponseObject> {
-        const magicItem = this.magicItemRepository.create(createMagicItemDto);
-        const validItem = this.magicItemService.validateMagicItem(magicItem);
+        const validator: Validator = new Validator();
 
-        const character = await this.characterRepository.findById(createMagicItemDto.character.id);
-        if (!character) {
-            return new ResponseObject(HttpStatus.BAD_REQUEST, { message: `Character with id ${createMagicItemDto.character.id} doesn't exists.` })
+        if (!validator.isUUID(createMagicItemDto.characterId)) {
+            return new ResponseObject(HttpStatus.BAD_REQUEST, { message: 'Invalid character id' })
         }
+
+        const magicItem = this.magicItemRepository.create(createMagicItemDto);
+        magicItem.character = new Character();
+        magicItem.character.id = createMagicItemDto.characterId;
+        const validItem = this.magicItemService.validateMagicItem(magicItem);
 
 
         if (validItem.valid) {
+            const characterFound = await this.characterRepository.find({ where: { id: magicItem.character.id }, relations: { magicItens: true } });
+
+            if (!characterFound[0]) {
+                return new ResponseObject(HttpStatus.BAD_REQUEST, { message: `Character with id ${magicItem.character.id} doesn't exists.` })
+            }
+
+            const character = characterFound[0];
+            const magicItems = await characterFound[0].magicItens;
+
+            if (magicItem.itemType === MagicItemEnum.AMULET) {
+                if (magicItems.find((item) => item.itemType === MagicItemEnum.AMULET)) {
+                    return new ResponseObject(HttpStatus.CONFLICT, { message: 'Character already has an amulet item' });
+                }
+            }
+
+            if (!character) {
+                return new ResponseObject(HttpStatus.BAD_REQUEST, { message: `Character with id ${magicItem.character.id} doesn't exists.` })
+            }
+
             await this.magicItemRepository.save(magicItem);
             return new ResponseObject(HttpStatus.CREATED, { message: 'Magic item successfully created' });
         }
