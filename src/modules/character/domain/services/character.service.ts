@@ -6,6 +6,7 @@ import { Validator } from "src/shared/utils/validator";
 import { ClassEnum } from "../enums/class.enum";
 import { MagicItemRepository } from "src/modules/magic_item/infrastructure/repositories/magic-item.repository";
 import { MagicItemEnum } from "src/modules/magic_item/domain/enums/magic-item-type.enum";
+import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.entity";
 
 @Injectable()
 export class CharacterService {

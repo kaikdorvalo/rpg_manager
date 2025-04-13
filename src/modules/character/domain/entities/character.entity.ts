@@ -20,7 +20,9 @@ export class Character {
     @Column({ nullable: false })
     level: number
 
-    @ManyToMany(() => MagicItem, magicItem => magicItem.characters)
+    @ManyToMany(() => MagicItem, magicItem => magicItem.characters, {
+        lazy: true
+    })
     @JoinTable()
     magicItens: MagicItem[]
 

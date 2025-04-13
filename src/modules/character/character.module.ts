@@ -5,6 +5,7 @@ import { DatabaseModule } from "src/infrastrucutre/database/database.module";
 import { CreateCharacterUseCase } from "./application/use-cases/create-character.use-case";
 import { CharacterService } from "./domain/services/character.service";
 import { MagicItemModule } from "../magic_item/magic-item.module";
+import { GetCharacterInformationsUseCase } from "./application/use-cases/get-character-informations";
 
 @Module({
     imports: [
@@ -17,12 +18,14 @@ import { MagicItemModule } from "../magic_item/magic-item.module";
     providers: [
         CharacterService,
         CharacterRepository,
-        CreateCharacterUseCase
+        CreateCharacterUseCase,
+        GetCharacterInformationsUseCase,
     ],
     exports: [
         CharacterService,
         CharacterRepository,
-        CreateCharacterUseCase
+        CreateCharacterUseCase,
+        GetCharacterInformationsUseCase,
     ]
 })
 export class CharacterModule { }

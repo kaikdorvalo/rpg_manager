@@ -1,4 +1,4 @@
-import { DataSource, DeepPartial, DeleteResult, EntityManager, EntityTarget, UpdateResult } from "typeorm";
+import { DataSource, DeepPartial, DeleteResult, EntityManager, EntityTarget, FindManyOptions, UpdateResult } from "typeorm";
 import { Repository } from "./repository.interface";
 
 export class Crud<T> implements Repository<T> {
@@ -24,6 +24,12 @@ export class Crud<T> implements Repository<T> {
         const repository = manager ? manager.getRepository(this.entity) : this.datasource.getRepository(this.entity);
         return await repository.findOneBy({ id: id } as any);
     }
+
+    async find(findOptions: FindManyOptions, manager?: EntityManager): Promise<T[]> {
+        const repository = manager ? manager.getRepository(this.entity) : this.datasource.getRepository(this.entity);
+        return await repository.find(findOptions);
+    }
+
     async update(id: string, data: DeepPartial<T>, manager?: EntityManager): Promise<UpdateResult> {
         const repository = manager ? manager.getRepository(this.entity) : this.datasource.getRepository(this.entity);
         return await repository.update(id, data as any);
