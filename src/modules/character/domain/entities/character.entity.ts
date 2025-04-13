@@ -21,7 +21,8 @@ export class Character {
     level: number
 
     @ManyToMany(() => MagicItem, magicItem => magicItem.characters, {
-        lazy: true
+        lazy: true,
+        cascade: true
     })
     @JoinTable()
     magicItens: MagicItem[]
