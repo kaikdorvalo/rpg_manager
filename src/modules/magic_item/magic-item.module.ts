@@ -5,6 +5,7 @@ import { MagicItemRepository } from "./infrastructure/repositories/magic-item.re
 import { DatabaseModule } from "src/infrastrucutre/database/database.module";
 import { MagicItemController } from "./presentation/controllers/magic-item.controller";
 import { ListMagicItemsUseCase } from "./application/use-cases/list-magic-items.use-case";
+import { GetMagicItemByIdUseCase } from "./application/use-cases/get-magic-item-by-id.use-case";
 
 @Module({
     imports: [
@@ -16,6 +17,7 @@ import { ListMagicItemsUseCase } from "./application/use-cases/list-magic-items.
 
         CreateMagicItemUseCase,
         ListMagicItemsUseCase,
+        GetMagicItemByIdUseCase,
     ],
     controllers: [
         MagicItemController
@@ -25,7 +27,8 @@ import { ListMagicItemsUseCase } from "./application/use-cases/list-magic-items.
         MagicItemService,
 
         CreateMagicItemUseCase,
-        ListMagicItemsUseCase
+        ListMagicItemsUseCase,
+        GetMagicItemByIdUseCase
     ]
 })
 export class MagicItemModule { }
