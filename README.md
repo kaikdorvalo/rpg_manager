@@ -15,9 +15,10 @@ OBS: Tanto o banco de dados quanto a ORM foram implementadas de acordo com a doc
 
 1. Clone o repositório e certifique de ter clonado a branch main
 2. Instale as dependências com `npm install`
-3. Crie um arquivo `.env` e cole dentro delo todo o conteúdo do arquivo `.env.example`, adicionando as inormações necessárias para acessar o banco de dados.
-4. Abra o gerenciador de banco de dados PostgreSQL e crie um novo banco de dados com o mesmo nome informado no arquivo `.env` 
-3. Suba o servidor em modo de desenvolvimento com `npm run start:dev`
+3. Crie um arquivo `.env` e cole dentro delo todo o conteúdo do arquivo `.env.example`, adicionando as informações necessárias para acessar o banco de dados.
+4. Certifique-se de ter o banco de dados PostgreSQL devidamente instalado na máquina.
+5. Abra o gerenciador de banco de dados PostgreSQL e crie um novo banco de dados com o mesmo nome informado no arquivo `.env` 
+6. Suba o servidor em modo de desenvolvimento com `npm run start:dev`
 
 # Configurando o Postman
 
