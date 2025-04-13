@@ -33,12 +33,14 @@ ATENÇÃO: Não vou disponibilizar um exemplo de body para as requisições, poi
 
 1. Cadastrar Personagem
 * http://localhost:3000/characters/create
+* Classes válidas: warrior, wizard, archer, rogue, bard
 * Necessário enviar um body com os dados do personagem a ser criado
 * Não é possível criar itens mágicos no momento da criação de personagem.
 * `POST`
 
 2. Cadastrar Item Mágico;
 * http://localhost:3000/magic_items/create
+* Tipos válidos: weapon, armor, amulet
 * Necessário enviar um body com os dados do item a ser criado
 * o body deve possuir um campo com id do personagem que será dono do item. (Relação 1 x n como descrito na problemática, não podendo existir item sem personagem atrelado)
 * `POST`
