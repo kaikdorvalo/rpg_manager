@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import "dotenv/config";
 import { ClassEnum } from "../enums/class.enum";
 import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.entity";
@@ -20,11 +20,7 @@ export class Character {
     @Column({ nullable: false })
     level: number
 
-    @ManyToMany(() => MagicItem, magicItem => magicItem.characters, {
-        lazy: true,
-        cascade: true
-    })
-    @JoinTable()
+    @OneToMany(() => MagicItem, magicItem => magicItem.character)
     magicItens: MagicItem[]
 
     @Column({ nullable: false })

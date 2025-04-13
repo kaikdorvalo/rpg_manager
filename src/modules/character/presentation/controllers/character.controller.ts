@@ -1,15 +1,14 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Res } from "@nestjs/common";
 import { CreateCharacterUseCase } from "../../application/use-cases/create-character.use-case";
 import { CreateCharacterDto } from "../dtos/CreateCharacter.dto";
-import { Response } from "express";
+import { response, Response } from "express";
 import { GetCharacterInformationsUseCase } from "../../application/use-cases/get-character-informations";
 import { GetCharacterByIdUseCase } from "../../application/use-cases/get-character-by-id.use-case";
 import { UpdateAdventurousNameUseCase } from "../../application/use-cases/update-adventurous-name.use-case";
 import { UpdateAdventurousNameDto } from "../dtos/update-adventurous-name.dto";
 import { RemoveCharacterUseCase } from "../../application/use-cases/remove-character.use-case";
-import { addCharacterMagicItemDto } from "../dtos/add-character-magic-item.dto";
-import { AddMagicItemUseCase } from "../../application/use-cases/add-magic-item.use-case";
 import { GetMagicItemsPerCharacterUseCase } from "../../application/use-cases/get-magic-items-per-character.use-case";
+import { GetChaarcterAmuletUseCase } from "../../application/use-cases/get-character-amulet.use-case";
 
 @Controller('characters')
 export class CharacterController {
@@ -20,8 +19,8 @@ export class CharacterController {
         private readonly getCharacterByIdUseCase: GetCharacterByIdUseCase,
         private readonly updateAdventurousNameUseCase: UpdateAdventurousNameUseCase,
         private readonly removeCharacterUseCase: RemoveCharacterUseCase,
-        private readonly addMagicItemUseCase: AddMagicItemUseCase,
         private readonly getMagicItemsPerCharacterUseCase: GetMagicItemsPerCharacterUseCase,
+        private readonly getChaarcterAmuletUseCase: GetChaarcterAmuletUseCase,
     ) { }
 
     @Post('create')
@@ -54,16 +53,15 @@ export class CharacterController {
         return response.status(result.status).send(result.data);
     }
 
-    @Post('magic_items/add/:id')
-    async addMagicItemToCharacter(@Param('id') id: string, @Body() addCharacterMagicItemDto: addCharacterMagicItemDto, @Res() response: Response) {
-        const result = await this.addMagicItemUseCase.execute(id, addCharacterMagicItemDto);
-        return response.status(result.status).send(result.data);
-    }
-
     @Get('magic_items/all/:id')
     async getMagicItemsPerCharacter(@Param('id') id: string, @Res() response: Response) {
         const result = await this.getMagicItemsPerCharacterUseCase.execute(id);
         return response.status(result.status).send(result.data);
     }
 
+    @Get('amulet/:id')
+    async getCharacterAmulet(@Param('id') id: string, @Res() response: Response) {
+        const result = await this.getChaarcterAmuletUseCase.execute(id);
+        return response.status(result.status).send(result.data);
+    }
 }

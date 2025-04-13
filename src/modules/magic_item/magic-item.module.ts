@@ -6,10 +6,14 @@ import { DatabaseModule } from "src/infrastrucutre/database/database.module";
 import { MagicItemController } from "./presentation/controllers/magic-item.controller";
 import { ListMagicItemsUseCase } from "./application/use-cases/list-magic-items.use-case";
 import { GetMagicItemByIdUseCase } from "./application/use-cases/get-magic-item-by-id.use-case";
+import { CharacterModule } from "../character/character.module";
+import { AddCharacterMagicItem } from "./application/use-cases/add-character-magic-item";
+import { RemoveCharacterMagicItemUseCase } from "./application/use-cases/remove-character-magic_item.use-case";
 
 @Module({
     imports: [
-        DatabaseModule
+        DatabaseModule,
+        CharacterModule
     ],
     providers: [
         MagicItemRepository,
@@ -18,6 +22,8 @@ import { GetMagicItemByIdUseCase } from "./application/use-cases/get-magic-item-
         CreateMagicItemUseCase,
         ListMagicItemsUseCase,
         GetMagicItemByIdUseCase,
+        AddCharacterMagicItem,
+        RemoveCharacterMagicItemUseCase,
     ],
     controllers: [
         MagicItemController
@@ -28,7 +34,9 @@ import { GetMagicItemByIdUseCase } from "./application/use-cases/get-magic-item-
 
         CreateMagicItemUseCase,
         ListMagicItemsUseCase,
-        GetMagicItemByIdUseCase
+        GetMagicItemByIdUseCase,
+        AddCharacterMagicItem,
+        RemoveCharacterMagicItemUseCase,
     ]
 })
 export class MagicItemModule { }

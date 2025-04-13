@@ -4,6 +4,7 @@ import { ResponseObject } from "src/shared/classes/response-object.class";
 import { MagicItemInformation } from "src/modules/magic_item/domain/class/MagicItemInformation.class";
 import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.entity";
 import { CharacterInformation } from "../../domain/class/character-information.class";
+import { Validator } from "src/shared/utils/validator";
 
 @Injectable()
 export class GetCharacterInformationsUseCase {
@@ -12,6 +13,12 @@ export class GetCharacterInformationsUseCase {
     ) { }
 
     async execute(id: string): Promise<ResponseObject> {
+        const validator: Validator = new Validator();
+
+        if (!validator.isUUID(id)) {
+            return new ResponseObject(HttpStatus.BAD_REQUEST, { message: "Character id must be an UUID" })
+        }
+
         const findCharacter = await this.characterRepository.find({ where: { id: id }, relations: { magicItens: true } })
         if (!findCharacter[0]) {
             return new ResponseObject(HttpStatus.NOT_FOUND);

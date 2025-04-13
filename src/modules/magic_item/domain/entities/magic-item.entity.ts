@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import "dotenv/config";
 import { MagicItemEnum } from "../enums/magic-item-type.enum";
 import { Character } from "src/modules/character/domain/entities/character.entity";
@@ -21,6 +21,10 @@ export class MagicItem {
     @Column({ nullable: false })
     defense: number
 
-    @ManyToMany(() => Character, character => character.magicItens)
-    characters: Character[]
+    @ManyToOne(() => Character, character => character.magicItens, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+        cascade: true
+    })
+    character: Character
 }

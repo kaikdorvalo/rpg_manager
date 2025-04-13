@@ -18,9 +18,7 @@ export class CreateCharacterUseCase {
     async execute(createCharacterDto: CreateCharacterDto) {
 
         let character = this.characterRepository.create(createCharacterDto);
-        if (!createCharacterDto.magicItens) {
-            character.magicItens = [];
-        }
+        character.magicItens = [];
 
         let validCharacter = await this.characterService.validateCharacter(character);
 
