@@ -11,6 +11,8 @@ Para fazer requisições foi utilizado o Postman
 
 OBS: Tanto o banco de dados quanto a ORM foram implementadas de acordo com a documentação do Nestjs e do TypeORM
 
+CONTATO: Caso surja algum dúvida, dificuldade ou necessidade, pode me chamar no discord que respondo na mesma hora. meu discord é kdsssss
+
 # Como subir o servidor
 
 1. Clone o repositório e certifique de ter clonado a branch main
