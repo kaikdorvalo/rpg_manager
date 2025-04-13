@@ -1,6 +1,9 @@
 
 # Sistema de Gerenciamento para um jogode PRG
 
+Nome: Kaik Dorvalo dos Santos
+RA: 220939192
+
 O sistema foi desenvolvido com NodeJS no back-end, com o famework Nestjs.
 
 O banco de dados utilizado foi o PostgreSQL
@@ -11,7 +14,7 @@ Para fazer requisições foi utilizado o Postman
 
 OBS: Tanto o banco de dados quanto a ORM foram implementadas de acordo com a documentação do Nestjs e do TypeORM
 
-CONTATO: Caso surja algum dúvida, dificuldade ou necessidade, pode me chamar no discord que respondo na mesma hora. meu discord é kdsssss
+CONTATO: Caso surja alguma dúvida, dificuldade ou necessidade, pode me chamar no discord que respondo na mesma hora. meu discord é kdsssss
 
 # Como subir o servidor
 
