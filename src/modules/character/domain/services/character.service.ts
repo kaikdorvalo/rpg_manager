@@ -11,7 +11,7 @@ import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.ent
 @Injectable()
 export class CharacterService {
     constructor(
-        private readonly magicItemRepository: MagicItemRepository
+        // private readonly magicItemRepository: MagicItemRepository
     ) { }
 
     public validator = new Validator();
@@ -54,20 +54,20 @@ export class CharacterService {
     async validateCharacterMagicItems(character: Character): Promise<ValidationResult> {
         let invalidFields: InvalidField[] = []
 
-        let queries = character.magicItens.map((magicItem) => {
-            return this.magicItemRepository.findById(magicItem.id);
-        })
+        // let queries = character.magicItens.map((magicItem) => {
+        //     return this.magicItemRepository.findById(magicItem.id);
+        // })
 
-        const result = await Promise.all(queries);
-        const validMagicItems = result.filter((magicItem) => magicItem !== null);
-        if (validMagicItems.length - result.length !== 0) {
-            invalidFields.push(new InvalidField('magicItems', 'Invalid magic item(s)'))
-        }
+        // const result = await Promise.all(queries);
+        // const validMagicItems = result.filter((magicItem) => magicItem !== null);
+        // if (validMagicItems.length - result.length !== 0) {
+        //     invalidFields.push(new InvalidField('magicItems', 'Invalid magic item(s)'))
+        // }
 
-        let validateAmulet = validMagicItems.filter((magicItem) => magicItem.itemType === MagicItemEnum.AMULET);
-        if (validateAmulet.length > 1) {
-            invalidFields.push(new InvalidField('magicItems', `One amulet item limit exceded. You provided ${validateAmulet.length}`));
-        }
+        // let validateAmulet = validMagicItems.filter((magicItem) => magicItem.itemType === MagicItemEnum.AMULET);
+        // if (validateAmulet.length > 1) {
+        //     invalidFields.push(new InvalidField('magicItems', `One amulet item limit exceded. You provided ${validateAmulet.length}`));
+        // }
 
         let validated = invalidFields.length === 0;
 

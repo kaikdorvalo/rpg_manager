@@ -20,7 +20,7 @@ export class CharacterController {
         private readonly getCharacterByIdUseCase: GetCharacterByIdUseCase,
         private readonly updateAdventurousNameUseCase: UpdateAdventurousNameUseCase,
         private readonly removeCharacterUseCase: RemoveCharacterUseCase,
-        private readonly addMagicItemUseCase: AddMagicItemUseCase,
+        // private readonly addMagicItemUseCase: AddMagicItemUseCase,
         private readonly getMagicItemsPerCharacterUseCase: GetMagicItemsPerCharacterUseCase,
     ) { }
 
@@ -54,11 +54,11 @@ export class CharacterController {
         return response.status(result.status).send(result.data);
     }
 
-    @Post('magic_items/add/:id')
-    async addMagicItemToCharacter(@Param('id') id: string, @Body() addCharacterMagicItemDto: addCharacterMagicItemDto, @Res() response: Response) {
-        const result = await this.addMagicItemUseCase.execute(id, addCharacterMagicItemDto);
-        return response.status(result.status).send(result.data);
-    }
+    // @Post('magic_items/add/:id')
+    // async addMagicItemToCharacter(@Param('id') id: string, @Body() addCharacterMagicItemDto: addCharacterMagicItemDto, @Res() response: Response) {
+    //     const result = await this.addMagicItemUseCase.execute(id, addCharacterMagicItemDto);
+    //     return response.status(result.status).send(result.data);
+    // }
 
     @Get('magic_items/all/:id')
     async getMagicItemsPerCharacter(@Param('id') id: string, @Res() response: Response) {

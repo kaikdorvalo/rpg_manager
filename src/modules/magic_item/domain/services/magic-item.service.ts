@@ -4,6 +4,7 @@ import { InvalidField } from "src/shared/classes/invalid-fields.class";
 import { MagicItemEnum } from "../enums/magic-item-type.enum";
 import { ValidationResult } from "src/shared/classes/ValidationResult";
 import { Character } from "src/modules/character/domain/entities/character.entity";
+import { Validator } from "src/shared/utils/validator";
 
 @Injectable()
 export class MagicItemService {
@@ -126,6 +127,15 @@ export class MagicItemService {
         }
 
         return new ValidationResult(false, [new InvalidField('itemType', `${magicItem.itemType} isn't a valid item type`)]);
+    }
+
+    validateHasCharacter(magicItem: MagicItem): ValidationResult {
+        const validator: Validator = new Validator();
+        if (!validator.isUUID(magicItem.characters.id)) {
+            return new ValidationResult(false, [new InvalidField('character', `Invalid character id`)])
+        }
+
+        return new ValidationResult(true)
     }
 
     validateWeaponItemType(magicItem: MagicItem): ValidationResult {

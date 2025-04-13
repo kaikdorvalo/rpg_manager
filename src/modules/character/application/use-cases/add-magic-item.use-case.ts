@@ -6,7 +6,6 @@ import { Character } from "../../domain/entities/character.entity";
 import { ResponseObject } from "src/shared/classes/response-object.class";
 import { MagicItemRepository } from "src/modules/magic_item/infrastructure/repositories/magic-item.repository";
 import { InvalidField } from "src/shared/classes/invalid-fields.class";
-import { exists } from "fs";
 import { MagicItemEnum } from "src/modules/magic_item/domain/enums/magic-item-type.enum";
 import { MagicItem } from "src/modules/magic_item/domain/entities/magic-item.entity";
 import { Validator } from "src/shared/utils/validator";

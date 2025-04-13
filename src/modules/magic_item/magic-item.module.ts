@@ -6,10 +6,12 @@ import { DatabaseModule } from "src/infrastrucutre/database/database.module";
 import { MagicItemController } from "./presentation/controllers/magic-item.controller";
 import { ListMagicItemsUseCase } from "./application/use-cases/list-magic-items.use-case";
 import { GetMagicItemByIdUseCase } from "./application/use-cases/get-magic-item-by-id.use-case";
+import { CharacterModule } from "../character/character.module";
 
 @Module({
     imports: [
-        DatabaseModule
+        DatabaseModule,
+        CharacterModule
     ],
     providers: [
         MagicItemRepository,
