@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "9d888d2a-77ac-434d-9835-fe02fb9f6b7a",
+		"name": "rpg_manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30261192"
+	},
+	"item": [
+		{
+			"name": "create_character",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Roberto\",\r\n    \"adventurousName\": \"Roberto do Morro\",\r\n    \"class\": \"wizard\",\r\n    \"level\": 5,\r\n    \"strength\": 6,\r\n    \"defense\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/characters/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_magic_item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"characterId\": \"235de786-ae2c-44ba-b996-f5853d0dc5dd\",\r\n    \"name\": \"Cabeça de cavalo\",\r\n    \"itemType\": \"weapon\",\r\n    \"strength\": 5,\r\n    \"defense\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/magic_items/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"magic_items",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_character_infomations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/characters/info/e7f1cb98-633f-47bb-88e5-bee34c72389e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"info",
+						"e7f1cb98-633f-47bb-88e5-bee34c72389e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_character_by_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/characters/find/4e987b58-3975-4fa3-8c29-b20ce506db93",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"find",
+						"4e987b58-3975-4fa3-8c29-b20ce506db93"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_adventurous_name",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"newAdventurousName\": \"Rato maluco\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/characters/changes/adventurous_name/4e987b58-3975-4fa3-8c29-b20ce506db96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"changes",
+						"adventurous_name",
+						"4e987b58-3975-4fa3-8c29-b20ce506db96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove-character_by_id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/characters/delete/c297215f-7a56-482c-9646-b33aabb0c217",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"delete",
+						"c297215f-7a56-482c-9646-b33aabb0c217"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_character_magic_item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"magicItemId\": \"b996026a-c8b7-4922-9863-8fb14e934303\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/magic_items/add_to_character/e7f1cb98-633f-47bb-88e5-bee34c72389e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"magic_items",
+						"add_to_character",
+						"e7f1cb98-633f-47bb-88e5-bee34c72389e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list_magic_items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/magic_items/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"magic_items",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-magic-item-by-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/magic_items/find/b996026a-c8b7-4922-9863-8fb14e934302",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"magic_items",
+						"find",
+						"b996026a-c8b7-4922-9863-8fb14e934302"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-magic-items-per-character",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/characters/magic_items/all/4e987b58-3975-4fa3-8c29-b20ce506db96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"magic_items",
+						"all",
+						"4e987b58-3975-4fa3-8c29-b20ce506db96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove-magic-item-from-character",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"magicItem\": \"12a875ef-664d-49d6-97bd-1eb9d216f2f2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/magic_items/remove_from_character/4e987b58-3975-4fa3-8c29-b20ce506db96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"magic_items",
+						"remove_from_character",
+						"4e987b58-3975-4fa3-8c29-b20ce506db96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-character-amulet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/characters/amulet/e7f1cb98-633f-47bb-88e5-bee34c72389e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"amulet",
+						"e7f1cb98-633f-47bb-88e5-bee34c72389e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
