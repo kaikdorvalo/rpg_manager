@@ -6,6 +6,7 @@ import { CreateCharacterUseCase } from "./application/use-cases/create-character
 import { CharacterService } from "./domain/services/character.service";
 import { MagicItemModule } from "../magic_item/magic-item.module";
 import { GetCharacterInformationsUseCase } from "./application/use-cases/get-character-informations";
+import { GetCharacterByIdUseCase } from "./application/use-cases/get-character-by-id.use-case";
 
 @Module({
     imports: [
@@ -20,12 +21,14 @@ import { GetCharacterInformationsUseCase } from "./application/use-cases/get-cha
         CharacterRepository,
         CreateCharacterUseCase,
         GetCharacterInformationsUseCase,
+        GetCharacterByIdUseCase,
     ],
     exports: [
         CharacterService,
         CharacterRepository,
         CreateCharacterUseCase,
         GetCharacterInformationsUseCase,
+        GetCharacterByIdUseCase,
     ]
 })
 export class CharacterModule { }
